@@ -11,7 +11,7 @@ RUN buildDeps='make gcc pcre-devel openssl-devel ' \
     && make && make install && useradd -r -M apache && mkdir /var/log/nginx -p && mkdir /usr/local/nginx/conf/conf.d\
     && rm -rf /usr/local/src/nginx-$VERSION && yum remove make gcc -y && yum clean all
 
-COPY nginx.conf /usr/local/nginx/conf/nginx.conf
+#COPY nginx.conf /usr/local/nginx/conf/nginx.conf
 
 EXPOSE 80
 

@@ -15,9 +15,10 @@ RUN buildDeps='make openssl-devel pcre-devel gcc libxml2-devel bzip2 libcurl-dev
        --with-openssl --with-mhash --enable-pcntl --enable-sockets --with-xmlrpc --enable-zip --enable-soap \
        --with-gettext --disable-fileinfo --enable-opcache --enable-intl --with-xsl \
     && make && make install && useradd -r -M apache && mkdir /data/release -p && mkdir /var/log/php -p \
-    && rm -rf /usr/local/src/php-$VERSION && yum remove make gcc gcc-c++ autoconf -y && yum clean all
+    && rm -rf /usr/local/src/php-$VERSION && yum remove make gcc gcc-c++ autoconf -y && yum clean all \
+    && cp /usr/local/php/etc/php-fpm.conf.default /usr/local/php/etc/php-fpm.conf
 
-COPY php-fpm.conf /usr/local/php/etc/php-fpm.conf
+#COPY php-fpm.conf /usr/local/php/etc/php-fpm.conf
 COPY redis.so /usr/local/php/lib/php/extensions/no-debug-non-zts-20131226/redis.so
 COPY ssh2.so /usr/local/php/lib/php/extensions/no-debug-non-zts-20131226/ssh2.so
 RUN chmod +x /usr/local/php/lib/php/extensions/no-debug-non-zts-20131226/* 
