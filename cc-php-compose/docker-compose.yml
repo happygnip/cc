@@ -1,0 +1,15 @@
+php:
+  image: php-fpm:v1
+  volumes:
+   - ./php-fpm.conf:/usr/local/php/etc/php-fpm.conf
+   - ./php.ini:/usr/local/php/etc/php.ini
+   - ./logs/ams:/var/log/ams
+   - ./logs/gate:/var/log/gate
+   - ./logs/mms:/var/log/mms
+   - ./logs/mod_stat:/var/log/mod_stat
+   - ./logs/pay:/var/log/pay
+   - ./logs/psys:/var/log/psys
+   - ./logs/php:/var/log/php
+  ports:
+   - "9000:9000"
+  command: "/usr/local/php/sbin/php-fpm"

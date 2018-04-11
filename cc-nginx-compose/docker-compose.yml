@@ -1,0 +1,14 @@
+web:
+  image: nginx:v1
+  volumes:
+   - ./nginx.conf:/etc/nginx/nginx.conf
+   - ./default.conf:/etc/nginx/conf.d/default.conf
+   - ./logs:/var/log/nginx/
+   - ./psys:/data/sites/psys
+  ports:
+   - "8080:80"
+  environment:
+   - NGINX_HOST=qspay.coincard.cc
+   - NGINX_PORT=80
+  #command: /bin/bash -c "envsubst < /etc/nginx/conf.d/pay.site > /etc/nginx/conf.d/pay.conf && nginx -g 'daemon off;'"
+  command: /bin/bash -c "nginx -g 'daemon off;'"
