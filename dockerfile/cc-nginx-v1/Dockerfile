@@ -9,7 +9,7 @@ RUN buildDeps='make gcc pcre-devel openssl-devel ' \
        --with-http_realip_module --with-http_ssl_module --with-http_addition_module \
        --with-http_gzip_static_module --with-http_v2_module \
     && make && make install && useradd -r -M apache && mkdir /var/log/nginx -p && mkdir /usr/local/nginx/conf/conf.d\
-    && rm -rf /usr/local/src/nginx-$VERSION && yum remove make gcc -y && yum clean all
+    && ln -s /usr/local/nginx/sbin/nginx /usr/local/sbin/nginx && rm -rf /usr/local/src/nginx-$VERSION && yum remove make gcc -y && yum clean all
 
 #COPY nginx.conf /usr/local/nginx/conf/nginx.conf
 
