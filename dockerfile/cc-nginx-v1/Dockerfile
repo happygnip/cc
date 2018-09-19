@@ -15,4 +15,4 @@ RUN buildDeps='make gcc pcre-devel openssl-devel ' \
 
 EXPOSE 80
 
-CMD ["/usr/local/nginx/sbin/nginx","-g","daemon off;"]
+CMD ["nginx","-g","daemon off;"]
