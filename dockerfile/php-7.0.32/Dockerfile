@@ -9,12 +9,13 @@ RUN buildDeps='make openssl-devel pcre-devel gcc libxml2-devel bzip2 libcurl-dev
     && ./configure --prefix=/usr/local/php --with-config-file-path=/usr/local/php/etc \
        --enable-fpm --with-fpm-user=apache --with-fpm-group=apache --with-mysql=mysqlnd \
        --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --with-iconv-dir  \
-       --with-jpeg-dir --with-png-dir --with-zlib --with-libxml-dir=/usr --enable-xml \
+       --with-jpeg-dir --with-png-dir --with-zlib --enable-xml \
        --disable-rpath --enable-bcmath --enable-shmop --enable-sysvsem --enable-inline-optimization \
        --with-curl --enable-mbregex --enable-mbstring --enable-ftp --with-gd --enable-gd-native-ttf \
        --with-openssl --with-mhash --enable-pcntl --enable-sockets --with-xmlrpc --enable-zip --enable-soap \
        --with-gettext --enable-fileinfo --enable-opcache --enable-intl --with-xsl \
-    && make && make install && useradd -r -M apache && mkdir /data/release -p && mkdir /var/log/php -p \
+    && make && make install && useradd -r -M apache && mkdir /var/log/php -p \
+    && cp /usr/local/src/php-${VERSION}/php.ini-production /usr/local/php/etc/php.ini \
     && rm -rf /usr/local/src/php-$VERSION && yum remove make gcc gcc-c++ autoconf -y && yum clean all \
     && cp /usr/local/php/etc/php-fpm.conf.default /usr/local/php/etc/php-fpm.conf \
     && echo 'PATH=$PATH:/usr/local/php/bin:/usr/local/php/sbin' >>/etc/profile && echo 'export PATH' >>/etc/profile
